@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Syncope</title>
+
+		<meta name="description" content="A vertical rhythm tool for developers and designers.">
+		<meta name="keywords" content="CSS,Typography,Vertical Rhythm">
+		<meta name="author" content="Aleksander Nowodzński – http://nowodzinski.pl">
+
+		<link href="css/styles.css" type="text/css" rel="stylesheet">
+		<link href="css/highlight/github.css" rel="stylesheet">
+		<link href="img/favicon.png" rel="icon" type="image/png">
+
+		<script src="js/vue.min.js"></script>
+		<script src="js/element-ui.min.js"></script>
+		<script src="js/highlight.pack.js"></script>
+		<script src="js/rhythm.js"></script>
+		<script src="js/app.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="ctrl">
+				<el-popover ref="popcap" placement="top" width="200" trigger="hover" content="Cap height is the height of the capital letter for the typeface."></el-popover>
+
+				<el-collapse v-model="collapse">
+					<el-collapse-item title="Basic settings" name="basic">
+						<el-form label-position="top">
+							<el-form-item label="Base font size (px)">
+								<el-slider v-model="config.baseFontSize" show-input :min="10" :max="30"></el-slider>
+							</el-form-item>
+							<el-form-item label="Base line height">
+								<el-slider v-model="config.baseLineHeight" show-input :step="0.1" :min="0.5" :max="3"></el-slider>
+							</el-form-item>
+							<el-form-item label="Text width (em)">
+								<el-slider v-model="config.textWidth" show-input :min="10" :max="100"></el-slider>
+							</el-form-item>
+						</el-form>
+						<el-form label-position="top" :inline="true">
+							<el-form-item class="ctrl__font-family" label="Font family">
+								<el-select v-model="config.font.current" placeholder="Font">
+									<el-option v-for="item in config.font.options" :label="item.label" :value="item.value"></el-option>
+								</el-select>
+							</el-form-item>
+							<el-form-item class="ctrl__cap-height" label="Cap height">
+								<el-input-number v-model="config.capHeight" :min="0.1" :max="1" :controls="false" v-popover:popcap></el-input-number>
+							</el-form-item>
+						</el-form>
+					</el-collapse-item>
+					<el-collapse-item title="Scale & rhythm" name="scale">
+						<el-form label-position="top">
+							<el-form-item class="ctrl__scale" label="Scale">
+								<el-select v-model="config.scale.current" placeholder="Scale">
+									<el-option v-for="item in config.scale.options" :label="item.label" :value="item.value"></el-option>
+								</el-select>
+							</el-form-item>
+						</el-form>
+						<el-form label-position="left" label-width="3em">
+							<el-form-item label="H1">
+								<el-slider v-model="config.scale.factors.h1" :min="0" :max="6" :show-stops="true"></el-slider>
+							</el-form-item>
+							<el-form-item label="H2">
+								<el-slider v-model="config.scale.factors.h2" :min="0" :max="6" :show-stops="true"></el-slider>
+							</el-form-item>
+							<el-form-item label="H3">
+								<el-slider v-model="config.scale.factors.h3" :min="0" :max="6" :show-stops="true"></el-slider>
+							</el-form-item>
+							<el-form-item label="H4">
+								<el-slider v-model="config.scale.factors.h4" :min="0" :max="6" :show-stops="true"></el-slider>
+							</el-form-item>
+						</el-form>
+					</el-collapse-item>
+				</el-collapse>
+				<el-form class="ctrl__actions" label-position="left">
+					<el-form-item label="Grid">
+						<el-switch v-model="config.showGrid" on-text="Yes" off-text="No"></el-switch>
+					</el-form-item>
+					<el-form-item label="Show output">
+						<el-switch v-model="config.outputVisible" on-text="Yes" off-text="No"></el-switch>
+					</el-form-item>
+				</el-form>
+			</div>
+			<div class="sandbox-container">
+				<section class="sandbox">
+					<h1>Syncope</h1>
+
+					<p>
+						Syncope is a <a href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> tool that helps web designers and
+						developers chose the optimal vertical rhythm of the <a href="https://en.wikipedia.org/wiki/Typography">typography</a>
+						for their web pages.
+					</p>
+					<p>
+						Basically, it's a set of tools which adjust the rhythm and output the styles in a preferred, production–friendly format.
+						It is also a lot of fun to play with! In fact, if it weren't for that, this tool wouldn't have seen the light of day.
+					</p>
+
+					<h2>Rhythm matters</h2>
+
+					<p>
+						Vertical rhythm is a typographic concept in which lines of text are evenly spaced,
+						i.e. regardless of font size or variant, each line must be precisely aligned to the grid of the rhythm.
+						Just like the text you're reading at this moment.
+					</p>
+					<p>
+						When visually organized in such way, the text is usually easier to read and simply looks better
+						as a part of the web page ecosystem. Long story short, it is something that every website should
+						implement to provide the best reading experience.
+					</p>
+
+					<h3>How does it work?</h3>
+
+					<p>
+						<a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a> does not offer any
+						<strong>direct</strong> tool to maintain the vertical rhythm.
+						But if used properly, <code>font-size</code>, <code>line-height</code>, <code>padding</code>,
+						<code>margin</code> combined together with a simple math will do the trick, which is exactly what
+						Syncope is all about.
+					</p>
+
+					<p>
+						The key factor to the success is the knowledge of the <a href="https://en.wikipedia.org/wiki/Cap_height">cap height</a>
+						value for the particular font.
+						Most often than not, it equals <code>0.68</code> but it differs for some typefaces. Cap height
+						makes it possible to align the <a href="https://en.wikipedia.org/wiki/Baseline_(typography)">baseline</a> of the
+						text to the rhythm grid knowing only the <code>font-size</code> and <code>line-height</code>.
+					</p>
+
+					<h4>So is that it?</h4>
+
+					<p>
+						Not really.
+						Syncope is just a specific approach to the problem of vertical rhythm but not the only one.
+						There are many <a href="https://pilot.co/blog/implementing-baseline-rhythm-in-css/">great</a>
+						<a href="https://medium.com/written-in-code/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b#.yuxw2jel2">resources</a>
+						to learn from and many on–line tools that do the same job.
+					</p>
+					<p>
+						Also, to my surprise, different web browser engines render things in a slightly
+						<a href="https://twitter.com/anowodzinski/status/831060163629084673">different way</a>.
+						It happens quite often when using <a href="https://developer.mozilla.org/en/docs/Web/CSS/length#Relative_length_units">EMs or REMs</a>
+						as a preferred output unit (sometimes with pixels too). Apparently, this aspect of rendering isn't standardized.
+					</p>
+					<p>
+						Found a bug? Have some comments? Check out Syncope on the <a href="https://github.com/oleq/syncope">GitHub</a>.
+					</p>
+				</section>
+			</div>
+			<div class="output" v-bind:class="{ hidden: !config.outputVisible }">
+				<div class="output__options">
+					<el-radio-group v-model="config.outputSyntax" size="small">
+						<el-radio-button label="css">CSS</el-radio-button>
+						<el-radio-button label="scss">SASS</el-radio-button>
+					</el-radio-group>
+					<el-radio-group v-model="config.outputUnit" size="small">
+						<el-radio-button label="px">px</el-radio-button>
+						<el-radio-button label="em">em</el-radio-button>
+						<el-radio-button label="rem">rem</el-radio-button>
+					</el-radio-group>
+				</div>
+				<pre><code v-html="output"></code></pre>
+			</div>
+		</div>
+		<a href="http://nowodzinski.pl"><img class="logo" src="img/logo.png" alt="Nowodzinski.pl" /></a>
+		<style class="sandbox-styles" type="text/css"></style>
+	</body>
+</html>

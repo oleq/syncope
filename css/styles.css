@@ -1,0 +1,195 @@
+@import url( "element-ui.css" );
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,700');
+
+body {
+	font: 16px/1 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.hidden {
+	display: none;
+}
+
+strong {
+	font-weight: 700;
+}
+
+.app {
+	display: flex;
+}
+
+/* -- CONTROL PANEL ---------------------------------------------------- */
+
+.ctrl {
+	flex: 0 0 23em;
+	background: #fff;
+}
+
+.ctrl .el-collapse {
+	border: 0;
+}
+
+.ctrl .el-form--inline .el-form-item__content {
+	line-height: initial;
+}
+
+.ctrl .el-collapse-item__content {
+	padding: 1.5em 1.5em 0;
+}
+
+.ctrl .el-form-item {
+	margin-bottom: 1em;
+}
+
+.ctrl .el-form-item.ctrl__cap-height,
+.ctrl .el-form-item.ctrl__unit {
+	float: right;
+	margin-right: 0;
+}
+
+.ctrl .el-form-item.ctrl__cap-height .el-input-number {
+	width: 8em;
+}
+
+.ctrl .el-form-item.ctrl__font-family .el-select {
+	width: 14em;
+}
+
+.ctrl .el-form-item.ctrl__scale {
+	display: block;
+	margin-right: 0;
+}
+
+.ctrl .el-form-item.ctrl__scale .el-select {
+	width: 100%;
+}
+
+.ctrl .el-form-item__content .el-slider {
+	line-height: initial;
+	font-size: initial;
+}
+
+.ctrl .ctrl__actions {
+	background: rgba(255,255,255,.9);
+	border-top: 1px solid #dfe6ec;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 23em;
+	padding: 1em;
+	z-index: 1010;
+}
+
+.ctrl .ctrl__actions .el-form-item {
+	margin-bottom: 0;
+	display: inline-block;
+	width: 50%;
+}
+
+.ctrl .ctrl__actions .el-form-item + .el-form-item {
+	float: right;
+}
+
+.ctrl .ctrl__actions .el-form-item__content {
+	line-height: 36px;
+	display: inline-block;
+}
+
+/* -- SANDBOX (PREVIEW) ---------------------------------------------------- */
+
+.sandbox-container {
+	padding: 2em;
+	flex: 3 0 0;
+	border-left: 1px solid #dfe6ec;
+	border-right: 1px solid #dfe6ec;
+	position: relative;
+}
+
+.sandbox {
+	min-height: 100vh;
+	margin: 0 auto;
+}
+
+.sandbox * {
+	margin: 0;
+	padding: 0;
+}
+
+.sandbox a {
+	color: #20a0ff;
+	text-decoration: none;
+}
+
+.sandbox a:hover {
+	text-decoration: underline;
+}
+
+.sandbox code {
+	font-family: inherit;
+	background: #ececec;
+	padding: 0 .2em;
+}
+
+/* -- OUTPUT ---------------------------------------------------- */
+
+.output {
+	flex: 0 0 23em;
+	padding: 4em 2em 2em;
+	margin: 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.output__options {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 1em;
+	text-align: right;
+}
+
+.output__options .el-radio-group + .el-radio-group {
+	margin-left: 10px;
+}
+
+.output code {
+	font-family: 'Roboto Mono', monospace;
+	font-size: .8em;
+	width: 100%;
+	height: 100%;
+	tab-size: 2;
+	-moz-tab-size: 2;
+	background: none;
+	line-height: 1.1;
+}
+
+.output code .hljs-number {
+	color: #20a0ff
+}
+
+.output code .hljs-attribute {
+	color: #000;
+}
+
+/* -- MISC ---------------------------------------------------- */
+
+.logo {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	width: 30px;
+	opacity: .5;
+}
+
+.logo:hover {
+	opacity: 1;
+}
