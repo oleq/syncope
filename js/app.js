@@ -21,7 +21,8 @@ doc.addEventListener( 'DOMContentLoaded', () => {
 						{ value: 'Helvetica', label: 'Helvetica' },
 						{ value: 'Roboto', label: 'Roboto' },
 						{ value: 'Times New Roman', label: 'Times New Roman' },
-					]
+					],
+					boldHeaders: true
 				},
 				scale: {
 					current: 1.5,
@@ -41,6 +42,10 @@ doc.addEventListener( 'DOMContentLoaded', () => {
 						h3: 2,
 						h4: 1,
 						p: 0
+					},
+					headerSpacing: {
+						before: 0,
+						after: 0
 					}
 				},
 				textWidth: 40,
@@ -51,7 +56,7 @@ doc.addEventListener( 'DOMContentLoaded', () => {
 			},
 
 			output: '',
-			collapse: [ 'basic', 'scale' ],
+			collapse: [ 'basic' ],
 			outputElement: doc.querySelector( '.output code' ),
 			sandboxStylesSheetElement: doc.querySelector( '.sandbox-styles' )
 		},
@@ -102,6 +107,10 @@ doc.addEventListener( 'DOMContentLoaded', () => {
 }}\n\n`;
 				}
 
+				styles += `.sandbox h1, .sandbox h2, .sandbox h3, .sandbox h4 {
+	font-weight: ${ cfg.font.boldHeaders ? 'bold' : 'normal' };
+}`;
+
 				this.sandboxStylesSheetElement.innerHTML = styles;
 			},
 
@@ -122,6 +131,14 @@ html, body {
 }
 
 `;
+
+				if ( !cfg.font.boldHeaders ) {
+					code += `h1, h2, h3, h4 {
+	font-weight: normal;
+}
+
+`;
+				}
 
 				if ( cfg.outputSyntax == 'css' ) {
 					for ( let r in rhythms ) {

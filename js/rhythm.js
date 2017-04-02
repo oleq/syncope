@@ -48,6 +48,11 @@ class Rhythm {
 		 * @member {Object} #marginBottom
 		 */
 		this.marginBottom = ( shift > cfg.rhythmUnit ? 2 : 1 ) * cfg.rhythmUnit - shift;
+
+		if ( level ) {
+			this.paddingTop += cfg.scale.headerSpacing.before * cfg.rhythmUnit;
+			this.marginBottom += cfg.scale.headerSpacing.after * cfg.rhythmUnit;
+		}
 	}
 
 	/**

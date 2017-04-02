@@ -45,10 +45,6 @@ strong {
 	padding: 1.5em 1.5em 0;
 }
 
-.ctrl .el-form-item {
-	margin-bottom: 1em;
-}
-
 .ctrl .el-form-item.ctrl__cap-height,
 .ctrl .el-form-item.ctrl__unit {
 	float: right;
@@ -56,11 +52,11 @@ strong {
 }
 
 .ctrl .el-form-item.ctrl__cap-height .el-input-number {
-	width: 8em;
+	width: 9.3em;
 }
 
 .ctrl .el-form-item.ctrl__font-family .el-select {
-	width: 14em;
+	width: 13em;
 }
 
 .ctrl .el-form-item.ctrl__scale {

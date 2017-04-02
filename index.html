@@ -25,6 +25,16 @@
 
 				<el-collapse v-model="collapse">
 					<el-collapse-item title="Basic settings" name="basic">
+						<el-form label-position="top" :inline="true">
+							<el-form-item class="ctrl__font-family" label="Font family">
+								<el-select v-model="config.font.current" placeholder="Font">
+									<el-option v-for="item in config.font.options" :label="item.label" :value="item.value"></el-option>
+								</el-select>
+							</el-form-item>
+							<el-form-item class="ctrl__cap-height" label="Cap height">
+								<el-input-number v-model="config.capHeight" :min="0.1" :max="1" :controls="false" v-popover:popcap></el-input-number>
+							</el-form-item>
+						</el-form>
 						<el-form label-position="top">
 							<el-form-item label="Base font size (px)">
 								<el-slider v-model="config.baseFontSize" show-input :min="10" :max="30"></el-slider>
@@ -36,18 +46,6 @@
 								<el-slider v-model="config.textWidth" show-input :min="10" :max="100"></el-slider>
 							</el-form-item>
 						</el-form>
-						<el-form label-position="top" :inline="true">
-							<el-form-item class="ctrl__font-family" label="Font family">
-								<el-select v-model="config.font.current" placeholder="Font">
-									<el-option v-for="item in config.font.options" :label="item.label" :value="item.value"></el-option>
-								</el-select>
-							</el-form-item>
-							<el-form-item class="ctrl__cap-height" label="Cap height">
-								<el-input-number v-model="config.capHeight" :min="0.1" :max="1" :controls="false" v-popover:popcap></el-input-number>
-							</el-form-item>
-						</el-form>
-					</el-collapse-item>
-					<el-collapse-item title="Scale & rhythm" name="scale">
 						<el-form label-position="top">
 							<el-form-item class="ctrl__scale" label="Scale">
 								<el-select v-model="config.scale.current" placeholder="Scale">
@@ -55,6 +53,13 @@
 								</el-select>
 							</el-form-item>
 						</el-form>
+						<el-form label-position="left" label-width="7em">
+							<el-form-item label="Bold headers">
+								<el-switch v-model="config.font.boldHeaders" on-text="Yes" off-text="No"></el-switch>
+							</el-form-item>
+						</el-form>
+					</el-collapse-item>
+					<el-collapse-item title="Rhythm adjustment" name="adjustment">
 						<el-form label-position="left" label-width="3em">
 							<el-form-item label="H1">
 								<el-slider v-model="config.scale.factors.h1" :min="0" :max="6" :show-stops="true"></el-slider>
@@ -67,6 +72,16 @@
 							</el-form-item>
 							<el-form-item label="H4">
 								<el-slider v-model="config.scale.factors.h4" :min="0" :max="6" :show-stops="true"></el-slider>
+							</el-form-item>
+						</el-form>
+					</el-collapse-item>
+					<el-collapse-item title="Extra header spacing" name="hader-spacing">
+						<el-form label-position="left" label-width="5em">
+							<el-form-item label="Before">
+								<el-slider v-model="config.scale.headerSpacing.before" :min="0" :max="3" :show-stops="true"></el-slider>
+							</el-form-item>
+							<el-form-item label="After">
+								<el-slider v-model="config.scale.headerSpacing.after" :min="0" :max="3" :show-stops="true"></el-slider>
 							</el-form-item>
 						</el-form>
 					</el-collapse-item>
