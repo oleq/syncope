@@ -178,14 +178,25 @@ strong {
 
 /* -- MISC ---------------------------------------------------- */
 
-.logo {
+.social {
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
-	width: 30px;
+}
+
+.social a {
+	display: block;
 	opacity: .5;
 }
 
-.logo:hover {
+.social a + a {
+	margin-top: 10px;
+}
+
+.social a:hover {
 	opacity: 1;
+}
+
+.social a img {
+	width: 30px;
 }
