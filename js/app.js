@@ -93,7 +93,7 @@ doc.addEventListener( 'DOMContentLoaded', () => {
 	font: ${ cfg.baseFontSize }px/${ cfg.baseLineHeight } ${ cfg.font.current };
 	padding: ${ cfg.baseLineHeight }em;
 	background: ${ cfg.showGrid ?
-		`linear-gradient( to bottom, #fff, #fff 98%, rgba( 32,160,255,1 ) 100% );`
+		`linear-gradient(to bottom, rgba( 32,160,255,.35 ) 1px, transparent 1px);`
 		:
 		'transparent;'
 	}
