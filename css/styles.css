@@ -8,6 +8,10 @@ body {
 html, body {
 	margin: 0;
 	padding: 0;
+
+	-webkit-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	text-size-adjust: none;
 }
 
 * {
